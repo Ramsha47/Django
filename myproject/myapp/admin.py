@@ -1,7 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from myapp.models import User
+
 from django.contrib.auth import get_user_model
+from myapp.models import Fruit
+from myapp.models import Meal
+
+
+
 
 User = get_user_model()
 class UserModelAdmin(BaseUserAdmin):
@@ -12,3 +17,5 @@ class UserModelAdmin(BaseUserAdmin):
 
 # Register the User model with the custom UserModelAdmin
 # admin.site.register(User, UserModelAdmin)
+admin.site.register(Fruit)
+admin.site.register(Meal)
