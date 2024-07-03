@@ -16,8 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from myapp.views.homeview import home
+from myapp.views.customviews import (
+    CustomPasswordResetView,
+    CustomPasswordResetDoneView,
+    CustomPasswordResetConfirmView,
+    CustomPasswordResetCompleteView
+)
+from myapp.views.Fruitsview import Fruits
+from myapp.views.Mealsview import meals_list ,meal_detail
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('api/', include('myapp.urls'))
+    path('api/', include('myapp.urls')),
+    path('home/',home, name='home'),
+    path('fruits/', Fruits),
+    path('api/meals/', meals_list),
+    path('api/meals/<int:pk>/', meal_detail),
+    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', CustomPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', CustomPasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]

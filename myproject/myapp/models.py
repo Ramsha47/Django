@@ -70,3 +70,15 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+class Fruit(models.Model):
+     fruit_name = models.CharField(max_length=100)
+     fruit_color = models.CharField(max_length=50)
+
+class Meal(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return self.name
